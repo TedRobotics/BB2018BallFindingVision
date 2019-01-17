@@ -100,7 +100,7 @@ build.dependsOn installNTServerApp
 build.dependsOn installVisionApp
 
 clean {
-    inputs.dir binDirectory
+    // inputs.dir binDirectory
     description "Remove the root bin directory."
     delete binDirectory
 }

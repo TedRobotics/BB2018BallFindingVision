@@ -1,16 +1,19 @@
 plugins {
-  id 'com.github.johnrengelman.shadow' version '1.2.4'
+  id 'com.github.johnrengelman.shadow' version '4.0.3'
+  id 'java'
+  id 'application'
+//  id 'application'
 }
 
-apply plugin: 'java'
-apply plugin: 'application'
+// apply plugin: 'java'
+//apply plugin: 'application'
 
 // Change the line below if you change the name of your main Java class
 mainClassName = 'Main'
 // Change the line below to change the name of the output jar
 def projectName = 'CameraVision'
 // Put in your FRC team number
-def team = '997'
+def team = '6027'
 // Put in a host address for network tables simulator server or leave blank for roboRio
 def nthost = 'localhost'
 // Put in a URL for the web camera
@@ -40,7 +43,9 @@ dependencies {
   compile 'org.opencv:opencv-java:3.1.0'
   compile 'com.beust:jcommander:1.72'
   testCompile 'junit:junit:4.11'
-  testCompile 'org.mockito:mockito-core:2.7.22'
+//  testCompile 'org.mockito:mockito-core:2.7.22'
+  testCompile 'org.mockito:mockito-core:2.23.4'
+
 }
 
 test {
@@ -61,7 +66,7 @@ shadowJar {
   baseName = projectName
 
   doLast {
-    def commandString = "java -Djava.library.path=. -jar ${projectName}-all.jar --team ${team} ${nthostSwitch} --cameraurl \"${cameraURL}\""
+    def commandString = "java -Djava.library.path=. -jar ${projectName}.jar --team ${team} ${nthostSwitch} --cameraurl \"${cameraURL}\""
     def debugCommandString = "java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044 -Djava.library.path=. -jar ${projectName}-all.jar --team ${team} ${nthostSwitch} --cameraurl \"${cameraURL}\""
 
     if (buildType == "windows") {
@@ -71,7 +76,7 @@ shadowJar {
       def runFile = new File("${scriptsDir}/run${projectName}.sh")
       runFile.write "while true; do"
       runFile.write commandString
-      runFile.write "echo ""Server 'CameraServer' crashed with exit code $?.  Respawning.."" >&2"
+      runFile.write "echo ""Server 'CameraServer' crashed with exit code \$?.  Respawning.."" >&2"
       runFile.write "sleep 1"
       runFile.write "done"
       def runDebugFile = new File("${scriptsDir}/run${projectName}-debug.sh")
