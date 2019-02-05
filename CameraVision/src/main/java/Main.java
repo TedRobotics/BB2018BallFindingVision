@@ -117,7 +117,10 @@ public class Main {
         // Annotate the image
         outputImage = redBallImageProcessor.annotate(inputImage);
         outputImage2 = blueBallImageProcessor.annotate(outputImage);
-
+/*
+        outputImage = blueBallImageProcessor.annotate(inputImage);
+        outputImage2 = outputImage; //blueBallImageProcessor.annotate(outputImage);
+*/
         // Write out the image
         imageSource.putFrame(outputImage2);
 
