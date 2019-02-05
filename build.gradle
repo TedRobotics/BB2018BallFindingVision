@@ -27,7 +27,7 @@ def pythonDirectory = "${binDirectory}/python"
 
 remotes {
     piccb {
-        host = 'visioncoproc.local'
+        host = 'vision.local'
         user = 'pi'
         password = 'raspberry'
     }
