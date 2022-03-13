@@ -87,7 +87,7 @@ shadowJar {
 
 distributions {
   main {
-    baseName = projectName
+    distributionBaseName = projectName
     contents {
       from (openCvUnzipLocation) {
         exclude 'META-INF'
